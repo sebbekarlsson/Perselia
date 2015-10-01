@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort, request
+from flask import Blueprint, render_template, abort, request, Response, jsonify
 from jinja2 import TemplateNotFound
 from api.users import Users
 
@@ -14,6 +14,6 @@ def call(function):
     klazz = function.split('.')[0].title()
 
     if klazz in valid_classes:
-        return getattr(globals()[klazz](), function.split('.')[1])(request.get_json())
+        return jsonify(getattr(globals()[klazz](), function.split('.')[1])(request.get_json()))
     else:
         abort(403)
