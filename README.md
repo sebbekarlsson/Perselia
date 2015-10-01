@@ -4,4 +4,5 @@
 
 ## API
 > * [Requests](REQUESTS.md)
-> * [Registering users](REGISTERING_USERS.md)
+> * [Registering users](USERS.REGISTER.md)
+> * [Deleting users](USERS.DELETE.md)
