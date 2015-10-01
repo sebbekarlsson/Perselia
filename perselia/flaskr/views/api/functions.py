@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request
 from jinja2 import TemplateNotFound
 from api.users import Users
 
@@ -9,11 +9,11 @@ valid_classes = [\
     'Users'
 ]
 
-@functions.route('/api/<function>')
+@functions.route('/api/<function>', methods=['GET', 'POST'])
 def call(function):
     klazz = function.split('.')[0].title()
 
     if klazz in valid_classes:
-        return getattr(globals()[klazz](), function.split('.')[1])()
+        return getattr(globals()[klazz](), function.split('.')[1])(request.get_json())
     else:
         abort(403)

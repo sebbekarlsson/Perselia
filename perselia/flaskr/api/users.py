@@ -1,3 +1,4 @@
 class Users(object):
-    def register(json):
-        return 'ok'
+    def register(self, json):
+        print(json)
+        return 'json'

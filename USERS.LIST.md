@@ -12,7 +12,8 @@
 
 #### JSON-RESPONSE:
 
-        'users':[
+        {
+            'users':[
             {
                 'firstname: 'John',
                 'lastname': 'Doe',
@@ -56,3 +57,4 @@
                 ]
             }
         ]
+    }
