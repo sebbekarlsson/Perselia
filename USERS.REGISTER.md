@@ -4,16 +4,16 @@
 #### JSON:
 
         {
-            'users':[
+            "users":[
                 {
-                    'firstname: 'John',
-                    'lastname': 'Doe',
-                    'email': 'john.doe@doecompany.com',
-                    'avatar_url': 'http://demo.geekslabs.com/materialize/v2.1/layout01/images/avatar.jpg',
+                    "firstname: "John",
+                    "lastname": "Doe",
+                    "email": "john.doe@doecompany.com",
+                    "avatar_url": "http://demo.geekslabs.com/materialize/v2.1/layout01/images/avatar.jpg",
                     
                     custom_fields:[
-                        {'key': 'birth', 'value': '1991-01-05'},
-                        {'key': 'gender', 'value': 'male'}
+                        {"key": "birth", "value": "1991-01-05"},
+                        {"key": "gender", "value": "male"}
                     ]
                 }
             ]
@@ -26,11 +26,11 @@
 > Like this:
 
         {
-            'users':[
+            "users":[
                 {
                     ...
 
-                    'id': '937471916'
+                    "id": "937471916"
                 }
             ]
         }
