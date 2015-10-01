@@ -1,5 +1,5 @@
 ## users.register
-> This function is used to register a new user
+> This function is used to register a new user.
 
 #### JSON:
 
@@ -16,6 +16,7 @@
                 ]
             }
         ]
+        
 > Note: this function takes an array of users, if you only want to register one single user, just put one object inside of the array.
 
 ## Updating a user

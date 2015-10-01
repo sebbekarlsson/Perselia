@@ -1,5 +1,5 @@
 ## users.delete
-> This function is used to delete a user
+> This function is used to delete a user.
 
 #### JSON:
 

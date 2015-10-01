@@ -6,3 +6,4 @@
 > * [Requests](REQUESTS.md)
 > * [Registering users](USERS.REGISTER.md)
 > * [Deleting users](USERS.DELETE.md)
+> * [Fetching users](USERS.LIST.md)
