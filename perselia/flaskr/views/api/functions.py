@@ -12,7 +12,7 @@ valid_classes = [\
 @functions.route('/api/<function>')
 def call(function):
     klazz = function.split('.')[0].title()
-    
+
     if klazz in valid_classes:
         return getattr(globals()[klazz](), function.split('.')[1])()
     else:
