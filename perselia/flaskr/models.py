@@ -12,6 +12,7 @@ sess = Session()
 
 class Data():
     created = Column(TIMESTAMP, server_default=func.now(), onupdate=func.current_timestamp())
+    token = Column(String)
 
 class User(Base, Data):
     __tablename__ = 'users'

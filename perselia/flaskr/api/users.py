@@ -12,7 +12,8 @@ class Users(object):
                 email=user['email'],\
                 avatar_url=user['avatar_url'],\
                 password=user['password'],\
-                master=user['master']
+                master=user['master'],\
+                token=token
             )
             sess.add(u)
             sess.flush()
