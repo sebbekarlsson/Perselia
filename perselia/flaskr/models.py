@@ -21,6 +21,7 @@ class User(Base, Data):
     email = Column(String, unique=True)
     avatar_url = Column(String)
     password = Column(String)
+    master = Column(Integer)
 
 class CustomField(Base, Data):
     __tablename__ = 'customfields'
@@ -28,6 +29,11 @@ class CustomField(Base, Data):
     user_id = Column(Integer, ForeignKey(User.id))
     key = Column(String)
     value = Column(String)
+
+class Token(Base, Data):
+    __tablename__ = 'tokens'
+    value = Column(String, primary_key=True)
+    user_id = Column(Integer, ForeignKey(User.id))
 
 class Option(Base, Data):
     __tablename__ = 'options'

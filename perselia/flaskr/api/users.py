@@ -3,7 +3,7 @@ import json
 
 
 class Users(object):
-    def register(self, data):
+    def register(self, data, token):
         ids = []
         for user in data['users']:
             u = User(\
@@ -11,7 +11,8 @@ class Users(object):
                 lastname=user['lastname'],\
                 email=user['email'],\
                 avatar_url=user['avatar_url'],\
-                password=user['password']\
+                password=user['password'],\
+                master=user['master']
             )
             sess.add(u)
             sess.flush()

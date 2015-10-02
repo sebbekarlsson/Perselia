@@ -20,6 +20,7 @@
                 "email": "john.doe@doecompany.com",
                 "avatar_url": "http://demo.geekslabs.com/materialize/v2.1/layout01/images/avatar.jpg",
                 "password": "odejoe123",
+                "master" : "0",
                 "id": "285902754",
                 "created": "2015-04-06-21:30",
                 "updated": "2015-05-06-22:30"
@@ -35,6 +36,7 @@
                 "email": "sarah.cliff@doecompany.com",
                 "avatar_url": "null",
                 "password": "shr24acli",
+                "master" : "0",
                 "id": "235955754",
                 "created": "2015-07-02-10:30",
                 "updated": "2015-09-06-06:21"
@@ -50,6 +52,7 @@
                 "email": "tom.haralds@doecompany.com",
                 "avatar_url": "http://demo.geekslabs.com/materialize/v2.1/layout02/images/avatar.jpg",
                 "password": "abc123",
+                "master" : "0",
                 "id": "185906664",
                 "created": "2015-02-03-01:45",
                 "updated": "2012-05-06-12:36"

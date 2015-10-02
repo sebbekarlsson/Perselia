@@ -9,11 +9,13 @@ valid_classes = [\
     'Users'
 ]
 
+token = '873hajhshgab927Jj1wxy0'
+
 @functions.route('/api/<function>', methods=['GET', 'POST'])
 def call(function):
     klazz = function.split('.')[0].title()
 
     if klazz in valid_classes:
-        return jsonify(getattr(globals()[klazz](), function.split('.')[1])(request.get_json()))
+        return jsonify(getattr(globals()[klazz](), function.split('.')[1])(data=request.get_json(), token=token))
     else:
         abort(403)
