@@ -21,7 +21,6 @@ class User(Base, Data):
     email = Column(String, unique=True)
     avatar_url = Column(String)
     password = Column(String)
-    admin = Column(Integer, default=0)
 
 class CustomField(Base, Data):
     __tablename__ = 'customfields'
