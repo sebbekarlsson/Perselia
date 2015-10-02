@@ -23,6 +23,13 @@ class User(Base, Data):
     password = Column(String)
     admin = Column(Integer, default=0)
 
+class CustomField(Base, Data):
+    __tablename__ = 'customfields'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey(User.id))
+    key = Column(String)
+    value = Column(String)
+
 class Option(Base, Data):
     __tablename__ = 'options'
     id = Column(Integer, primary_key=True)
