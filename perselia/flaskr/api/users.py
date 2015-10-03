@@ -1,5 +1,6 @@
 from models import sess, User, CustomField
 import json
+from api.functions import ok
 
 
 class Users(object):
@@ -37,6 +38,7 @@ class Users(object):
         if user is not None and user.token == token:
             sess.delete(user)
             sess.commit()
-            return {"ok":"true"}
+            
+            return ok(True)
         else:
-            return {"ok":"false"}
+            return ok(False)
