@@ -34,7 +34,7 @@ class Users(object):
 
     def delete(self, data, token):
         user = sess.query(User).filter(User.id==data['id']).first()
-        if user is not None:
+        if user is not None and user.token == token:
             sess.delete(user)
             sess.commit()
             return {"ok":"true"}
