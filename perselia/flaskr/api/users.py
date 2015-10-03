@@ -31,3 +31,12 @@ class Users(object):
                 sess.commit()
 
         return {'ids' : ids}
+
+    def delete(self, data, token):
+        user = sess.query(User).filter(User.id==data['id']).first()
+        if user is not None:
+            sess.delete(user)
+            sess.commit()
+            return {"ok":"true"}
+        else:
+            return {"ok":"false"}
