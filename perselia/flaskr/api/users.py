@@ -4,6 +4,8 @@ from api.functions import ok
 
 
 class Users(object):
+
+    ''' api/users.register (REGISTERS USERS) '''
     def register(self, data, token):
         ids = []
         for user in data['users']:
@@ -33,6 +35,7 @@ class Users(object):
 
         return {'ids' : ids}
 
+    ''' api/users.delete (DELETS USERS) '''
     def delete(self, data, token):
         user = sess.query(User).filter(User.id==data['id']).first()
         if user is not None and user.token == token:
@@ -43,6 +46,7 @@ class Users(object):
         else:
             return ok(False)
 
+    ''' api/users.list (LISTS USERS) '''
     def list(self, data, token):
         offset = data['offset']
         limit = data['max']
