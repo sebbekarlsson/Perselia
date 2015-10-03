@@ -38,7 +38,37 @@ class Users(object):
         if user is not None and user.token == token:
             sess.delete(user)
             sess.commit()
-            
+
             return ok(True)
         else:
             return ok(False)
+
+    def list(self, data, token):
+        offset = data['offset']
+        limit = data['max']
+
+        users = sess.query(User).filter(User.token==token).offset(offset).limit(limit)
+
+        returns = []
+
+        for user in users:
+            customfields = sess.query(CustomField).filter(CustomField.user_id==user.id).all()
+            returns.append(\
+                {\
+                    "firstname": user.firstname,
+                    "lastname": user.lastname,
+                    "email": user.email,
+                    "avatar_url": user.avatar_url,
+                    "password": user.password,
+                    "master" : user.master,
+                    "id": user.id,
+                    "created": user.created,
+
+                    "custom_fields":\
+
+                    [{"key": field.key, "value": field.value} for field in customfields]
+
+                }
+            )
+
+        return {"users":returns}
