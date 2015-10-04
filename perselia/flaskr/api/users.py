@@ -67,9 +67,8 @@ class Users(object):
                     "master" : user.master,
                     "id": user.id,
                     "created": user.created,
-
+                    
                     "custom_fields":\
-
                     [{"key": field.key, "value": field.value} for field in customfields]
 
                 }
