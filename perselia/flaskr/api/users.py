@@ -9,6 +9,11 @@ class Users(object):
     def register(self, data, token):
         ids = []
         for user in data['users']:
+
+            existing_user = sess.query(User).filter(User.email==user['email']).first()
+            if existing_user is not None:
+                return ok(False)
+
             u = User(\
                 firstname=user['firstname'],\
                 lastname=user['lastname'],\

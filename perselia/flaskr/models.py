@@ -23,6 +23,7 @@ class User(Base, Data):
     avatar_url = Column(String)
     password = Column(String)
     master = Column(Integer)
+    customfields = relationship("CustomField", cascade="all,delete", backref="User")
 
 class CustomField(Base, Data):
     __tablename__ = 'customfields'
