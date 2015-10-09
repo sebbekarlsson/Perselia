@@ -1,12 +1,16 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        {% block head %}{% endblock %}    
+        <link rel='stylesheet' type='text/css' href='{{ url_for('static', filename='style/style.css') }}'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        {% block head %}{% endblock %}
     </head>
     <body>
+        <div class='content content-centered'>
         {% block body %}{% endblock %}
+        </div>
     </body>
     <footer>
-        {% block footer %}{% endblock %}  
+        {% block footer %}{% endblock %}
     </footer>
 </html>

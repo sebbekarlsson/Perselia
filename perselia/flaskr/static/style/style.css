@@ -1,0 +1,92 @@
+* {
+  margin: 0px;
+  font-family: 'Roboto', sans-serif; }
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: block;
+  float: left;
+  margin: 1rem;
+  position: relative; }
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.2s ease-in-out; }
+
+.card-1:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+
+.card-2 {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+
+.card-3 {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+
+.card-4 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+
+.card-5 {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
+
+.card-size {
+  width: 360px;
+  height: 360px; }
+
+.card-label {
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  font-size: 100%; }
+  .card-label p {
+    padding-left: 4px;
+    padding-right: 4px; }
+
+.card-label-blue {
+  background-color: #3498db;
+  color: white; }
+
+.content {
+  width: 100%;
+  height: 100vh; }
+
+.card-content {
+  padding-top: 12px !important;
+  width: 80%; }
+
+.content-centered {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.text-padding-full {
+  padding: 4px; }
+
+.form {
+  width: 100%; }
+  .form ul {
+    list-style: none; }
+    .form ul li {
+      margin-bottom: 12px; }
+      .form ul li p {
+        color: gray;
+        font-size: 90%; }
+      .form ul li input[type='text'], .form ul li input[type='email'], .form ul li input[type='password'] {
+        outline: none;
+        font-size: 100%;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom-style: solid;
+        border-bottom-color: lightgray;
+        border-bottom-width: 1px;
+        width: 100%; }
+
+/*# sourceMappingURL=style.css.map */
