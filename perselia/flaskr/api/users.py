@@ -23,11 +23,17 @@ class Users(object):
                 master=user['master'],\
                 token=token
             )
+
+            # adding user to database
             sess.add(u)
+
+            # flushing the session
             sess.flush()
 
+            # refreshing the user object to obtain the new id
             sess.refresh(u)
 
+            # collecting the id of the user
             ids.append(u.id)
 
             for field in user['custom_fields']:
@@ -60,7 +66,6 @@ class Users(object):
         limit = data['max']
 
         users = sess.query(User).filter(User.token==token).offset(offset).limit(limit)
-
         returns = []
 
         for user in users:
