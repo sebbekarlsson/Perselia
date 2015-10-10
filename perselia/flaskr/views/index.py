@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort, request, Response
+from flask import Blueprint, render_template, abort, request, Response, session
 from jinja2 import TemplateNotFound
 
 

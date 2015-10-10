@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, abort, request, Response, jsonify
 from jinja2 import TemplateNotFound
 from api.users import Users
-from api.functions import ok
+from api.functions import ok, errors
 
 
 functions = Blueprint('functions', __name__)
@@ -16,7 +16,7 @@ token = '873hajhshgab927Jj1wxy0'
 def call(function):
 
     if request.method == 'GET':
-        return jsonify(ok(False))
+        return jsonify(errors(['perselia/flaskr/api/errors/bad_request.json']))
 
     klazz = function.split('.')[0].title()
 
