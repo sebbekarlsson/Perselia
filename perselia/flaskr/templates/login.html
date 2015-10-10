@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block title %} Login {% endblock %}
+{% block body %}
+    <div class='content content-centered'>
+        <div class="card card-2 card-size">
+            <nav class='card-label card-label-blue'>
+                <p>
+                   This is a card 
+                </p>
+            </nav>
+            <div class='card-content text-padding-full'>
+                <form method='post' class='form'>
+                    <ul>
+                        <li>
+                            <p>Email</p>
+                            <input type='email' name='name'>
+                        </li>
+                        <li>
+                            <p>Password</p>
+                            <input type='password' name='password'>
+                        </li>
+                        <li>
+                            <input type='submit' name='submit'>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
