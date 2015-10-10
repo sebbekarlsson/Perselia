@@ -1,6 +1,5 @@
 from models import sess, User, CustomField
 import json
-from api.functions import ok, errors
 from api.errors import throw_error
 
 

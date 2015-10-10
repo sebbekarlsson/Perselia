@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, abort, request, Response, jsonify
 from jinja2 import TemplateNotFound
 from api.users import Users
-from api.functions import ok
 from api.errors import throw_error
 
 
@@ -31,6 +30,6 @@ def call(function):
         result.status_code = response_object['status']
 
         return result
-        
+
     else:
         abort(403)
