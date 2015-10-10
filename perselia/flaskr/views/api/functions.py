@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, abort, request, Response, jsonify
 from jinja2 import TemplateNotFound
 from api.users import Users
-from api.functions import ok, errors
+from api.functions import ok
+from api.errors import throw_error
 
 
 functions = Blueprint('functions', __name__)
@@ -16,11 +17,20 @@ token = '873hajhshgab927Jj1wxy0'
 def call(function):
 
     if request.method == 'GET':
-        return jsonify(errors(['bad_request.json']))
+        response_object = throw_error(400, 'GET is not allowed')
+        result = jsonify(response_object)
+        result.status_code = response_object['status']
+
+        return result
 
     klazz = function.split('.')[0].title()
 
     if klazz in valid_classes:
-        return jsonify(getattr(globals()[klazz](), function.split('.')[1])(data=request.get_json(), token=token))
+        response_object = getattr(globals()[klazz](), function.split('.')[1])(data=request.get_json(), token=token)
+        result = jsonify(response_object)
+        result.status_code = response_object['status']
+
+        return result
+        
     else:
         abort(403)

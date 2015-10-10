@@ -1,6 +1,7 @@
 from models import sess, User, CustomField
 import json
 from api.functions import ok, errors
+from api.errors import throw_error
 
 
 class Users(object):
@@ -12,7 +13,7 @@ class Users(object):
 
             existing_user = sess.query(User).filter(User.email==user['email']).first()
             if existing_user is not None:
-                return errors(['user_already_exists.json'])
+                return throw_error(409, 'User already exists')
 
             u = User(\
                 firstname=user['firstname'],\
@@ -44,21 +45,21 @@ class Users(object):
                 sess.add(customfield)
                 sess.commit()
 
-        return {'ids' : ids}
+        return {'status' : 201, 'ids' : ids}
 
     ''' api/users.delete (DELETS USERS) '''
     def delete(self, data, token):
         user = sess.query(User).filter(User.id==data['id']).first()
         if user is not None:
             if user.token != token:
-                return errors(['bad_token.json'])
+                return throw_error(400, 'Bad token')
 
             sess.delete(user)
             sess.commit()
 
-            return errors(None)
+            return throw_error(200, 'null')
         else:
-            return errors(['no_such_user.json'])
+            return throw_error(400, 'No such user')
 
     ''' api/users.list (LISTS USERS) '''
     def list(self, data, token):
@@ -87,4 +88,4 @@ class Users(object):
                 }
             )
 
-        return {"users":returns}
+        return {'status' : 200, 'users' : returns}
