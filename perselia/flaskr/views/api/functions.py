@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, abort, request, Response, jsonify
 from jinja2 import TemplateNotFound
 from api.users import Users
+from api.functions import ok
 
 
 functions = Blueprint('functions', __name__)
@@ -15,7 +16,7 @@ token = '873hajhshgab927Jj1wxy0'
 def call(function):
 
     if request.method == 'GET':
-        return render_template('sorry.html')
+        return jsonify(ok(False))
 
     klazz = function.split('.')[0].title()
 
