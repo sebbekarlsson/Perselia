@@ -83,7 +83,8 @@
 
 .card-size {
   width: 360px;
-  height: 360px; }
+  min-height: 360px;
+  padding-bottom: 48px; }
 
 .card-label {
   width: 100%;

@@ -12,6 +12,9 @@ app.register_blueprint(functions)
 from views.index import index
 app.register_blueprint(index)
 
+''' register blueprint '''
+from views.register import register
+app.register_blueprint(register)
 
 ''' login blueprint '''
 from views.login import login
