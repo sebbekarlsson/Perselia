@@ -13,10 +13,11 @@
     display: inline-block;
     margin-left: 12px;
     margin-right: 12px; }
-  .navbar .navbtn {
+  .navbar .btn {
     text-decoration: none;
     font-size: 100%;
-    display: inline-block; }
+    display: inline-block;
+    color: white; }
 
 .navbar-blue {
   background-color: #3498db;
@@ -37,6 +38,29 @@
   float: left;
   margin: 1rem;
   position: relative; }
+  .card .options {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    line-height: 48px; }
+    .card .options ul, .card .options li {
+      list-style: none;
+      display: inline-block;
+      margin-left: 8px;
+      margin-right: 8px; }
+      .card .options ul .btn, .card .options li .btn {
+        text-decoration: none;
+        font-size: 100%;
+        display: inline-block;
+        height: 100%;
+        color: lightgray;
+        background-color: white;
+        outline: none;
+        border: none; }
+      .card .options ul .btn-blue, .card .options li .btn-blue {
+        color: #3498db; }
 
 .card-1 {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -79,10 +103,8 @@
   height: 100%; }
 
 .card-content {
-  padding-top: 12px !important;
+  padding-top: 24px !important;
   width: 80%; }
-  .card-content .form {
-    margin-top: 32px; }
 
 .content-centered {
   width: 100%;
@@ -118,5 +140,8 @@
         border-bottom-color: lightgray;
         border-bottom-width: 1px;
         width: 100%; }
+
+.btn:hover {
+  cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */

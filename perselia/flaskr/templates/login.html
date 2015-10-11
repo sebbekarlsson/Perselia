@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% from "__formhelpers.html" import render_field %}
 {% block title %} Login {% endblock %}
 {% block body %}
     <div class='content content-centered'>
@@ -12,17 +13,17 @@
                 <form method='post' class='form'>
                     <ul>
                         <li>
-                            <p>Email</p>
-                            <input type='email' name='name'>
+                            {{ render_field(form.email) }}
                         </li>
                         <li>
-                            <p>Password</p>
-                            <input type='password' name='password'>
-                        </li>
-                        <li>
-                            <input type='submit' name='submit'>
+                            {{ render_field(form.password) }}
                         </li>
                     </ul>
+                    <nav class='options'>
+                        <ul class='right'>
+                            <li><input type='submit' class='btn btn-blue' name='submit' value='SUBMIT'></li>
+                        </ul>
+                    </nav>
                 </form>
             </div>
         </div>

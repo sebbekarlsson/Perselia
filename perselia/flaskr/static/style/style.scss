@@ -1,6 +1,7 @@
 $site_blue: #3498db;
 $text_padding: 8px;
-$bar_height: 48px; 
+$bar_height: 48px;
+
 
 *{
     margin:0px;
@@ -23,10 +24,11 @@ $bar_height: 48px;
     margin-right:12px;
   }
 
-  .navbtn{
+  .btn{
     text-decoration: none;
     font-size:100%;
     display:inline-block;
+    color:white;
   }
 }
 
@@ -54,6 +56,37 @@ $bar_height: 48px;
   float: left;
   margin: 1rem;
   position: relative;
+
+  .options{
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:48px;
+    line-height: 48px;
+    
+    ul, li{
+      list-style: none;
+      display:inline-block;
+      margin-left:$text_padding;
+      margin-right:$text_padding;
+
+      .btn{
+        text-decoration: none;
+        font-size:100%;
+        display:inline-block;
+        height:100%;
+        color:lightgray;
+        background-color:white;
+        outline:none;
+        border:none;
+      }
+
+      .btn-blue{
+        color:$site_blue;
+      }
+    }
+  }
 }
 
 .card-1 {
@@ -109,12 +142,8 @@ $bar_height: 48px;
 }
 
 .card-content{
-  padding-top:12px !important;
+  padding-top:24px !important;
   width:80%;
-
-  .form{
-    margin-top:32px;
-  }
 }
 
 .content-centered{
@@ -159,4 +188,8 @@ $bar_height: 48px;
             }
         }
     }
+}
+
+.btn:hover{
+  cursor:pointer;
 }
