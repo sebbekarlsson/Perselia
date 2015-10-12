@@ -3,28 +3,30 @@
 {% block title %} Login {% endblock %}
 {% block body %}
     <div class='content content-centered'>
-        <div class="card card-4 card-size">
-            <nav class='card-label card-label-blue'>
-                <p>
-                   Login 
-                </p>
-            </nav>
-            <div class='card-content text-padding-full'>
-                <form method='post' class='form'>
-                    <ul>
-                        <li>
-                            {{ render_field(form.email) }}
-                        </li>
-                        <li>
-                            {{ render_field(form.password) }}
-                        </li>
-                    </ul>
-                    <nav class='options'>
-                        <ul class='right'>
-                            <li><input type='submit' class='btn btn-blue' name='submit' value='SUBMIT'></li>
+        <div class='card-flow'>
+            <div class="card card-4 card-size">
+                <nav class='card-label card-label-blue'>
+                    <p>
+                       Login 
+                    </p>
+                </nav>
+                <div class='card-content text-padding-full'>
+                    <form method='post' class='form'>
+                        <ul>
+                            <li>
+                                {{ render_field(form.email) }}
+                            </li>
+                            <li>
+                                {{ render_field(form.password) }}
+                            </li>
                         </ul>
-                    </nav>
-                </form>
+                        <nav class='options'>
+                            <ul class='right'>
+                                <li><input type='submit' class='btn btn-blue' name='submit' value='SUBMIT'></li>
+                            </ul>
+                        </nav>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

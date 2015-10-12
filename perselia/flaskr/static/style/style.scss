@@ -1,6 +1,8 @@
 $site_blue: #3498db;
 $text_padding: 8px;
 $bar_height: 48px;
+$side_nav_width: 25%;
+$right_content_width: 100% - $side_nav_width;
 
 
 *{
@@ -9,9 +11,11 @@ $bar_height: 48px;
 }
 
 .navbar{
+  position: relative;
   width:100%;
   height:$bar_height;
   line-height:$bar_height;
+  z-index: 2;
 
   ul{
     padding:0;
@@ -41,6 +45,19 @@ $bar_height: 48px;
   }
 }
 
+.side-nav{
+  width:$side_nav_width;
+  height:100vh;
+  border-right-color:lightgray;
+  border-right-width:1px;
+  border-right-style: solid;
+  background-color:white;
+  position: fixed;
+  z-index: 1;
+  top:0;
+  left:0;
+}
+
 .left{
   float:left;
 }
@@ -53,7 +70,6 @@ $bar_height: 48px;
   background: #fff;
   border-radius: 2px;
   display: block;
-  float: left;
   margin: 1rem;
   position: relative;
 
@@ -115,9 +131,10 @@ $bar_height: 48px;
 }
 
 .card-size{
-    width:360px;
-    min-height:360px;
-    padding-bottom:48px;
+  width: 360px;
+  min-height:360px;
+  padding-bottom:48px;
+  margin:auto;
 }
 
 .card-size-adaptive{
@@ -153,6 +170,11 @@ $bar_height: 48px;
   width:80%;
 }
 
+.content-right{
+  float: right;
+  width: $right_content_width;
+}
+
 .content-centered{
     width:100%;
     padding: 0;
@@ -164,6 +186,16 @@ $bar_height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.card-flow{
+  padding-top:24px;
+  width:80%;
+  margin:auto;
+
+  .card{
+    margin-bottom:24px;
+  }
 }
 
 .card-flow-centered{

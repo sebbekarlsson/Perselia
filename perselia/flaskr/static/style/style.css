@@ -3,9 +3,11 @@
   font-family: 'Roboto', sans-serif; }
 
 .navbar {
+  position: relative;
   width: 100%;
   height: 48px;
-  line-height: 48px; }
+  line-height: 48px;
+  z-index: 2; }
   .navbar ul {
     padding: 0; }
   .navbar ul, .navbar li {
@@ -25,6 +27,18 @@
   .navbar-blue .navbtn {
     color: white; }
 
+.side-nav {
+  width: 25%;
+  height: 100vh;
+  border-right-color: lightgray;
+  border-right-width: 1px;
+  border-right-style: solid;
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0; }
+
 .left {
   float: left; }
 
@@ -35,7 +49,6 @@
   background: #fff;
   border-radius: 2px;
   display: block;
-  float: left;
   margin: 1rem;
   position: relative; }
   .card .options {
@@ -84,7 +97,8 @@
 .card-size {
   width: 360px;
   min-height: 360px;
-  padding-bottom: 48px; }
+  padding-bottom: 48px;
+  margin: auto; }
 
 .card-size-adaptive {
   min-width: 360px;
@@ -112,6 +126,10 @@
   padding-top: 24px !important;
   width: 80%; }
 
+.content-right {
+  float: right;
+  width: 75%; }
+
 .content-centered {
   width: 100%;
   padding: 0;
@@ -123,6 +141,13 @@
   display: flex;
   align-items: center;
   justify-content: center; }
+
+.card-flow {
+  padding-top: 24px;
+  width: 80%;
+  margin: auto; }
+  .card-flow .card {
+    margin-bottom: 24px; }
 
 .card-flow-centered {
   width: 100%;
