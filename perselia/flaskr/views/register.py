@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort, request, Response, session
+from flask import Blueprint, render_template, abort, request, Response, session, url_for
 from jinja2 import TemplateNotFound
 
 from flask.ext.wtf import Form
@@ -20,7 +20,6 @@ class RegisterForm(Form):
 
 @register.route('/register', methods=['GET', 'POST'])
 def _register():
-
     form = RegisterForm(request.form, csrf_enabled=False)
 
     if form.validate_on_submit():

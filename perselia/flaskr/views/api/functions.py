@@ -2,9 +2,12 @@ from flask import Blueprint, render_template, abort, request, Response, jsonify
 from jinja2 import TemplateNotFound
 from api.users import Users
 from api.errors import throw_error
+from flask.ext.cors import CORS
 
 
 functions = Blueprint('functions', __name__)
+
+CORS(functions)
 
 valid_classes = [\
     'Users'

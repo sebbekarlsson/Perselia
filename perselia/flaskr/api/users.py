@@ -44,7 +44,7 @@ class Users(object):
                 sess.add(customfield)
                 sess.commit()
 
-        return {'status' : 201, 'ids' : ids}
+        return {'status' : 201, 'ids' : ids, "errors" : None}
 
     ''' api/users.delete (DELETS USERS) '''
     def delete(self, data, token):
