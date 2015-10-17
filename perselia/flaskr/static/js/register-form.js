@@ -26,7 +26,6 @@ function register(form){
         if(resp.errors != null){
 
             /* Printing errors if there are any */
-            statusmessage = document.getElementById('statusmessage');
             statusmessage.textContent = resp.errors;
         }else{
 
