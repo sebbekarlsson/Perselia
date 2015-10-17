@@ -19,7 +19,7 @@ function register(form){
     data.users.push(user);
     
     /* Sending our request */
-    json_request('/api/users.register', data, function(response) {
+    json_request('/api/users.register', data, true, function(response) {
         resp = JSON.parse(response);
         statusmessage = document.getElementById('statusmessage');
 

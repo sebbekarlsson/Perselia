@@ -1,13 +1,22 @@
 {% extends 'layout.html' %}
 {% from "__formhelpers.html" import render_field %}
 {% block title %} Login {% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <script type='text/javascript' src='{{ url_for('static', filename='js/get-user.js') }}'></script>
+    <script type='text/javascript' src='{{ url_for('static', filename='js/login.js') }}'></script>
+    <script type='text/javascript' src='{{ url_for('static', filename='js/login-form.js') }}'></script>
+{% endblock %}
+
+
 {% block body %}
     <div class='content content-centered'>
         <div class='card-flow'>
             <div class="card card-4 card-size">
                 <nav class='card-label card-label-blue'>
                     <p>
-                       Login 
+                       Login {{session['user_id']}}
                     </p>
                 </nav>
                 <div class='card-content text-padding-full'>
@@ -19,10 +28,15 @@
                             <li>
                                 {{ render_field(form.password) }}
                             </li>
+                            <li>
+                                <p id='statusmessage'></p>
+                            </li>
                         </ul>
                         <nav class='options'>
                             <ul class='right'>
-                                <li><input type='submit' class='btn btn-blue' name='submit' value='SUBMIT'></li>
+                                <li>
+                                    <button class='btn btn-blue' name='submit' onclick='return login(this.form);'>SUBMIT</button>
+                                </li>
                             </ul>
                         </nav>
                     </form>

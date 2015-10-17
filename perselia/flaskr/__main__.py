@@ -6,6 +6,8 @@ from flask.ext.cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+app.secret_key = 'super secret key'
+app.config['SESSION_TYPE'] = 'filesystem'
 
 ''' API functions blueprint '''
 from views.api.functions import functions

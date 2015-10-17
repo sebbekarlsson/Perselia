@@ -1,3 +1,4 @@
+from flask import session
 from models import sess, User, CustomField
 import json
 from api.errors import throw_error
@@ -12,7 +13,7 @@ class Users(object):
 
             existing_user = sess.query(User).filter(User.email==user['email']).first()
             if existing_user is not None:
-                return throw_error(409, 'User already exists')
+                return throw_error(202, 'User already exists')
 
             u = User(\
                 firstname=user['firstname'],\
@@ -88,3 +89,45 @@ class Users(object):
             )
 
         return {'status' : 200, 'users' : returns}
+
+    def get(self, data, token):
+        email = data['email']
+
+        user = sess.query(User).filter(User.email==email).first()
+
+        if user is None:
+            return throw_error(400, 'No such user')
+
+        returns = []
+
+        customfields = sess.query(CustomField).filter(CustomField.user_id==user.id).all()
+        returns.append(\
+            {\
+                "firstname": user.firstname,
+                "lastname": user.lastname,
+                "email": user.email,
+                "avatar_url": user.avatar_url,
+                "password": user.password,
+                "master" : user.master,
+                "id": user.id,
+                "created": user.created,
+                
+                "custom_fields":\
+                [{"key": field.key, "value": field.value} for field in customfields]
+
+            }
+        )
+
+        return {'status' : 200, 'users' : returns, "errors" : None}
+
+    def login(self, data, token):
+        user = self.get(data, token)['users'][0]
+
+        ok = data['password'] == user['password']
+
+        if ok is True:
+            session['user_id'] = user['id']
+            return {'status' : 200, "errors" : None}
+        else:
+            del session['user_id']
+            return throw_error(202, 'Wrong password')
