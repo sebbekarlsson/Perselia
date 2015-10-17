@@ -1,6 +1,12 @@
 {% extends 'layout.html' %}
 {% from "__formhelpers.html" import render_field %}
 {% block title %} Register {% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <script type='text/javascript' src='{{ url_for('static', filename='js/register-form.js') }}'></script>
+{% endblock %}
+
 {% block body %}
     <div class='content content-centered'>
         <div class='card-flow'>
@@ -40,49 +46,6 @@
                                 <li><button class='btn btn-blue' name='submit' onclick='return register(this.form);'>SUBMIT</button></li>
                             </ul>
                         </nav>
-
-                        <script type='text/javascript'>
-                            function register(form){
-
-                                /* Creating our request object */
-                                var data = {};
-                                data.users = [];
-                                var user = {};
-
-                                /* Creating a user */
-                                user.firstname = form.firstname.value;
-                                user.lastname = form.lastname.value;
-                                user.email = form.email.value;
-                                user.avatar_url = form.avatar_url.value;
-                                user.password = form.password.value;
-                                user.password_confirm = form.password_confirm.value;
-                                user.master = 1;
-                                user.custom_fields = [];
-
-                                /* Pushing the user to our request object */
-                                data.users.push(user);
-                                
-                                /* Sending our request */
-                                json_request('/api/users.register', data, function(response) {
-                                    resp = JSON.parse(response);
-                                    statusmessage = document.querySelector('#statusmessage');
-                                    
-                                    if(resp.errors != null){
-
-                                        /* Printing errors if there are any */
-                                        statusmessage = document.querySelector('#statusmessage');
-                                        statusmessage.innerHTML = resp.errors;
-                                    }else{
-
-                                        /* Everything went OK */
-                                        statusmessage.innerHTML = 'Registration Complete!';
-                                    }
-                                });
-
-                                /* Preventing default behaviour of the form button */
-                                return false;
-                            }
-                        </script>
                     </form>
                 </div>
             </div>
