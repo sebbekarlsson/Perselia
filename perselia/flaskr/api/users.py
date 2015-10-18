@@ -26,6 +26,14 @@ class Users(object):
                 token=token
             )
 
+            if u.password != encrypt(user['password_confirm']):
+                return throw_error(202, 'Passwords does not match!')
+
+            for attr, value in u.__dict__.items():
+                if value is '' or value is ' ' or value is None:
+                    return throw_error(202, 'Value of {attribute} is empty.'.format(attribute=attr))
+
+
             # adding user to database
             sess.add(u)
 
