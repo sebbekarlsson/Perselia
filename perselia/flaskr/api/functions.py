@@ -1,6 +1,9 @@
 import base64
 import string as _string
 import random
+from urllib.request import urlopen
+import os
+from flask import url_for
 
 
 def encrypt(string):
@@ -27,3 +30,13 @@ def generate_token(length=32):
         token += str(char)
 
     return token
+
+def download_file(url, path):
+    response = urlopen(url)
+    content = response.read()
+
+    path = url_for('static', filename='upload/image/avatar')
+
+    with open('perselia/flaskr' + path + '/' + os.path.basename(url), 'wb+') as f:
+        f.write(content)
+        f.close()

@@ -1,5 +1,8 @@
 function register(form) {
 
+    statusmessage = document.getElementById('statusmessage');
+    statusmessage.textContent = 'Please wait...';
+
     /* Creating our request object */
     var data = {};
     data.users = [];
@@ -21,7 +24,6 @@ function register(form) {
     /* Sending our request */
     json_request('/api/users.register', data, true, function(response) {
             resp = JSON.parse(response);
-            statusmessage = document.getElementById('statusmessage');
 
             if(resp.errors !== null){
 
