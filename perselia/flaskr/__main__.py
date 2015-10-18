@@ -28,5 +28,4 @@ app.register_blueprint(login)
 
 if __name__ == "__main__":
     initialize_database()
-    create_admin()
     app.run(debug=True)

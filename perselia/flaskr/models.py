@@ -76,4 +76,5 @@ def create_admin():
 
 def initialize_database():
     Base.metadata.create_all(engine)
+    create_admin()
 
