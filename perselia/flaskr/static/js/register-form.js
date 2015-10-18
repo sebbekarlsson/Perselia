@@ -1,4 +1,4 @@
-function register(form){
+function register(form) {
 
     /* Creating our request object */
     var data = {};
@@ -17,22 +17,23 @@ function register(form){
 
     /* Pushing the user to our request object */
     data.users.push(user);
-    
+
     /* Sending our request */
     json_request('/api/users.register', data, true, function(response) {
-        resp = JSON.parse(response);
-        statusmessage = document.getElementById('statusmessage');
+            resp = JSON.parse(response);
+            statusmessage = document.getElementById('statusmessage');
 
-        if(resp.errors != null){
+            if(resp.errors !== null){
 
-            /* Printing errors if there are any */
-            statusmessage.textContent = resp.errors;
-        }else{
+                /* Printing errors if there are any */
+                statusmessage.textContent = resp.errors;
+            }else{
 
-            /* Everything went OK */
-            statusmessage.textContent = 'Registration Complete!';
+                /* Everything went OK */
+                statusmessage.textContent = 'Registration Complete!';
+            }
         }
-    });
+    );
 
     /* Preventing default behaviour of the form button */
     return false;

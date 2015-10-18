@@ -78,7 +78,7 @@ class Users(object):
                     "lastname": user.lastname,
                     "email": user.email,
                     "avatar_url": user.avatar_url,
-                    "password": user.password,
+                    "password": user.password.decode(encoding='UTF-8'),
                     "master" : user.master,
                     "id": user.id,
                     "created": user.created,
@@ -97,6 +97,7 @@ class Users(object):
         user = sess.query(User).filter(User.email==email).first()
 
         if user is None:
+            print('no such user')
             return throw_error(400, 'No such user')
 
         returns = []
@@ -108,7 +109,7 @@ class Users(object):
                 "lastname": user.lastname,
                 "email": user.email,
                 "avatar_url": user.avatar_url,
-                "password": user.password,
+                "password": user.password.decode(encoding='UTF-8'),
                 "master" : user.master,
                 "id": user.id,
                 "created": user.created,
@@ -122,7 +123,11 @@ class Users(object):
         return {'status' : 200, 'users' : returns, "errors" : None}
 
     def login(self, data, token):
-        user = self.get(data, token)['users'][0]
+
+        try:
+            user = self.get(data, token)['users'][0]
+        except KeyError:
+            return throw_error(400, 'No such user')
 
         ok = data['password'] == decrypt(user['password'])
 
@@ -130,5 +135,9 @@ class Users(object):
             session['user_id'] = user['id']
             return {'status' : 200, "errors" : None}
         else:
-            del session['user_id']
+            try:
+                del session['user_id']
+            except KeyError:
+                pass
+
             return throw_error(202, 'Wrong password')
