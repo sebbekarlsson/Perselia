@@ -2,6 +2,7 @@ from flask import session
 from models import sess, User, CustomField
 import json
 from api.errors import throw_error
+from api.functions import encrypt, decrypt
 
 
 class Users(object):
@@ -20,7 +21,7 @@ class Users(object):
                 lastname=user['lastname'],\
                 email=user['email'],\
                 avatar_url=user['avatar_url'],\
-                password=user['password'],\
+                password=encrypt(user['password']),\
                 master=user['master'],\
                 token=token
             )
@@ -123,7 +124,7 @@ class Users(object):
     def login(self, data, token):
         user = self.get(data, token)['users'][0]
 
-        ok = data['password'] == user['password']
+        ok = data['password'] == decrypt(user['password'])
 
         if ok is True:
             session['user_id'] = user['id']
