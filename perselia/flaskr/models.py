@@ -1,10 +1,12 @@
 from sqlalchemy import Column, DateTime, String, Integer, ForeignKey, func, create_engine, TIMESTAMP
 from sqlalchemy.orm import relationship, backref, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from api.functions import generate_token, encrypt
+
 
 Base = declarative_base()
 
-engine = create_engine('sqlite:///database.sqlite')
+engine = create_engine('sqlite:///database.sqlite', connect_args={'check_same_thread':False})
 Session = sessionmaker()
 Session.configure(bind=engine)
 
@@ -48,7 +50,30 @@ class Post(Base, Data):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     content = Column(String)
-    
+
+
+def create_admin():
+    user = User\
+    (
+        firstname='Richard',
+        lastname='Stallman',
+        email='admin@admin.com',
+        avatar_url='https://stallman.org/Portrait_-_Denmark_DTU_2007-3-31.jpg',
+        password=encrypt('admin'),
+        master=1,
+        token=generate_token()
+    )
+
+    old_user = sess.query(User).filter(User.email==user.email).first()
+
+    if old_user is not None:
+        return False
+
+    sess.add(user)
+    sess.commit()
+
+    return True
 
 def initialize_database():
     Base.metadata.create_all(engine)
+

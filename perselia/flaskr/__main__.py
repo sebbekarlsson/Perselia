@@ -1,5 +1,5 @@
 from flask import Flask, request
-from models import initialize_database
+from models import initialize_database, create_admin
 from flask.ext.cors import CORS
 
 
@@ -28,4 +28,5 @@ app.register_blueprint(login)
 
 if __name__ == "__main__":
     initialize_database()
+    create_admin()
     app.run(debug=True)
