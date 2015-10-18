@@ -13,6 +13,9 @@ valid_classes = [\
     'Users'
 ]
 
+# I am setting the token here for now, just for debugging purposes.
+# Later, tokens can be generated from an administration account.
+# Creating a user with the field 'master' set to '1' will create an admin account.
 token = '873hajhshgab927Jj1wxy0'
 
 @functions.route('/api/<function>', methods=['GET', 'POST'])
