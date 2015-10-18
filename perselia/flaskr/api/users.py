@@ -26,9 +26,11 @@ class Users(object):
                 token=token
             )
 
+            # Validating the password, is it equal to the confirmation password?
             if u.password != encrypt(user['password_confirm']):
                 return throw_error(202, 'Passwords does not match!')
 
+            # Validating each field of the user
             for attr, value in u.__dict__.items():
                 if value is '' or value is ' ' or value is None:
                     return throw_error(202, 'Value of {attribute} is empty.'.format(attribute=attr))
@@ -56,7 +58,7 @@ class Users(object):
 
         return {'status' : 201, 'ids' : ids, "errors" : None}
 
-    ''' api/users.delete (DELETS USERS) '''
+    ''' api/users.delete (DELETES USERS) '''
     def delete(self, data, token):
         user = sess.query(User).filter(User.id==data['id']).first()
         if user is not None:
@@ -99,6 +101,7 @@ class Users(object):
 
         return {'status' : 200, 'users' : returns}
 
+    ''' api/users.get (FETCH USER BY EMAIL) '''
     def get(self, data, token):
         email = data['email']
 
@@ -130,6 +133,7 @@ class Users(object):
 
         return {'status' : 200, 'users' : returns, "errors" : None}
 
+    ''' api/users.login (LOGINS USER) '''
     def login(self, data, token):
 
         try:
