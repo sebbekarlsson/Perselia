@@ -31,12 +31,22 @@ def generate_token(length=32):
 
     return token
 
+def generate_name(length=16):
+    name = ''
+    for i in range(0, length):
+        char = random.choice(_string.ascii_letters)
+
+        if random.randint(0, 3) == 0:
+                char = str(random.randint(0, 9))
+
+        name += char
+
+    return name
+
 def download_file(url, path):
     response = urlopen(url)
     content = response.read()
 
-    path = url_for('static', filename='upload/image/avatar')
-
-    with open('perselia/flaskr' + path + '/' + os.path.basename(url), 'wb+') as f:
+    with open('perselia/flaskr' + path, 'wb+') as f:
         f.write(content)
         f.close()

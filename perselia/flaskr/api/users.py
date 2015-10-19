@@ -2,7 +2,7 @@ from flask import session
 from models import sess, User, CustomField
 import json
 from api.errors import throw_error
-from api.functions import encrypt, decrypt, download_file
+from api.functions import encrypt, decrypt, download_file, generate_name
 
 
 class Users(object):
@@ -36,7 +36,7 @@ class Users(object):
                     return throw_error(202, 'Value of {attribute} is empty.'.format(attribute=attr))
 
 
-            download_file(u.avatar_url, 'static/upload/image/avatar')
+            download_file(u.avatar_url, '/static/upload/image/avatar/{filename}.jpg'.format(filename=generate_name()))
 
             # adding user to database
             sess.add(u)
