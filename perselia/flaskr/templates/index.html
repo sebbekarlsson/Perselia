@@ -1,49 +1,52 @@
 {% extends 'layout.html' %}
 {% block title %} Index {% endblock %}
 {% block body %}
-<div class='side-nav'>
+<div id='backdrop' onclick='return toggle_sidenav();'>
 </div>
-    <div class='content-right'>
-        <div class='card-flow'>
-            <div class="card card-4 card-size-adaptive">
-                <nav class='card-label card-label-blue'>
-                    <p>
-                       Register User
-                    </p>
-                </nav>
-                <div class='card-content text-padding-full'>
-                       This is asp dotnet
-                </div>
+<div id='side-nav'>
+    <ul>
+        <li><a href='aspnet' class='navbtn'>ASP.NET</a></li>
+    </ul>
+</div>
+    <div class='card-flow'>
+        <div class="card card-4 card-size-adaptive" onclick='return toggle_sidenav();'>
+            <nav class='card-label card-label-blue'>
+                <p>
+                   Register User
+                </p>
+            </nav>
+            <div class='card-content text-padding-full'>
+                   This is asp dotnet
             </div>
-            <div class="card card-4 card-size-adaptive">
-                <nav class='card-label card-label-blue'>
-                    <p>
-                       Register User
-                    </p>
-                </nav>
-                <div class='card-content text-padding-full'>
-                       This is asp dotnet
-                </div>
+        </div>
+        <div class="card card-4 card-size-adaptive">
+            <nav class='card-label card-label-blue'>
+                <p>
+                   Register User
+                </p>
+            </nav>
+            <div class='card-content text-padding-full'>
+                   This is asp dotnet
             </div>
-            <div class="card card-4 card-size-adaptive">
-                <nav class='card-label card-label-blue'>
-                    <p>
-                       Register User
-                    </p>
-                </nav>
-                <div class='card-content text-padding-full'>
-                       This is asp dotnet
-                </div>
+        </div>
+        <div class="card card-4 card-size-adaptive">
+            <nav class='card-label card-label-blue'>
+                <p>
+                   Register User
+                </p>
+            </nav>
+            <div class='card-content text-padding-full'>
+                   This is asp dotnet
             </div>
-            <div class="card card-4 card-size-adaptive">
-                <nav class='card-label card-label-blue'>
-                    <p>
-                       Register User
-                    </p>
-                </nav>
-                <div class='card-content text-padding-full'>
-                       This is asp dotnet
-                </div>
+        </div>
+        <div class="card card-4 card-size-adaptive">
+            <nav class='card-label card-label-blue'>
+                <p>
+                   Register User
+                </p>
+            </nav>
+            <div class='card-content text-padding-full'>
+                   This is asp dotnet
             </div>
         </div>
     </div>

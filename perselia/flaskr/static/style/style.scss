@@ -2,7 +2,6 @@ $site_blue: #3498db;
 $text_padding: 8px;
 $bar_height: 48px;
 $side_nav_width: 25%;
-$right_content_width: 100% - $side_nav_width;
 
 
 *{
@@ -15,7 +14,7 @@ $right_content_width: 100% - $side_nav_width;
   width:100%;
   height:$bar_height;
   line-height:$bar_height;
-  z-index: 2;
+  z-index: 1;
 
   ul{
     padding:0;
@@ -45,7 +44,7 @@ $right_content_width: 100% - $side_nav_width;
   }
 }
 
-.side-nav{
+#side-nav{
   width:$side_nav_width;
   height:100vh;
   border-right-color:lightgray;
@@ -53,9 +52,21 @@ $right_content_width: 100% - $side_nav_width;
   border-right-style: solid;
   background-color:white;
   position: fixed;
+  z-index: 100;
+  top:0;
+  left:-$side_nav_width;
+}
+
+#backdrop{
+  position: fixed;
+  width:100%;
+  height:100vh;
   z-index: 1;
   top:0;
   left:0;
+  background-color:rgba(0, 0, 0, 0.5);
+  display:none;
+  opacity: 0;
 }
 
 .left{
@@ -168,11 +179,6 @@ $right_content_width: 100% - $side_nav_width;
 .card-content{
   padding-top:24px !important;
   width:80%;
-}
-
-.content-right{
-  float: right;
-  width: $right_content_width;
 }
 
 .content-centered{

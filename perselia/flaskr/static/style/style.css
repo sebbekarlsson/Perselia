@@ -7,7 +7,7 @@
   width: 100%;
   height: 48px;
   line-height: 48px;
-  z-index: 2; }
+  z-index: 1; }
   .navbar ul {
     padding: 0; }
   .navbar ul, .navbar li {
@@ -27,7 +27,7 @@
   .navbar-blue .navbtn {
     color: white; }
 
-.side-nav {
+#side-nav {
   width: 25%;
   height: 100vh;
   border-right-color: lightgray;
@@ -35,9 +35,20 @@
   border-right-style: solid;
   background-color: white;
   position: fixed;
+  z-index: 100;
+  top: 0;
+  left: -25%; }
+
+#backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
   z-index: 1;
   top: 0;
-  left: 0; }
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  opacity: 0; }
 
 .left {
   float: left; }
@@ -125,10 +136,6 @@
 .card-content {
   padding-top: 24px !important;
   width: 80%; }
-
-.content-right {
-  float: right;
-  width: 75%; }
 
 .content-centered {
   width: 100%;
