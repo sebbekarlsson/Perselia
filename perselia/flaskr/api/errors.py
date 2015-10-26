@@ -8,4 +8,7 @@ def throw_error(status, errors):
             'errors': [errors]
     }
 
+    if errors is None:
+        response['errors'] = None
+
     return response
