@@ -6,6 +6,8 @@ import os
 from flask import url_for
 
 
+JSON_HEADERS = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
 def encrypt(string):
     return base64.b64encode(string.encode('ascii'))
 

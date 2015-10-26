@@ -5,8 +5,8 @@
 {% block head %}
     {{ super() }}
     <script type='text/javascript' src='{{ url_for('static', filename='js/get-user.js') }}'></script>
-    <script type='text/javascript' src='{{ url_for('static', filename='js/login.js') }}'></script>
-    <script type='text/javascript' src='{{ url_for('static', filename='js/login-form.js') }}'></script>
+    <!--<script type='text/javascript' src='{{ url_for('static', filename='js/login.js') }}'></script>
+    <script type='text/javascript' src='{{ url_for('static', filename='js/login-form.js') }}'></script>-->
 {% endblock %}
 
 
@@ -29,7 +29,13 @@
                                 {{ render_field(form.password) }}
                             </li>
                             <li>
-                                <p id='statusmessage'></p>
+                                <p id='statusmessage'>
+                                    {% if error is not none %}
+                                        {% for err in error %}
+                                            {{ err }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </p>
                             </li>
                         </ul>
                         <nav class='options'>

@@ -28,4 +28,4 @@ app.register_blueprint(login)
 
 if __name__ == "__main__":
     initialize_database()
-    app.run(debug=True)
+    app.run(debug=True, threaded=True)

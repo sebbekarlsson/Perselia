@@ -105,12 +105,15 @@ class Users(object):
 
     ''' api/users.get (FETCH USER BY EMAIL) '''
     def get(self, data, token):
+
+        if data is None:
+            return throw_error(400, 'Data is null')
+
         email = data['email']
 
         user = sess.query(User).filter(User.email==email).first()
 
         if user is None:
-            print('no such user')
             return throw_error(400, 'No such user')
 
         returns = []
@@ -143,7 +146,11 @@ class Users(object):
         except KeyError:
             return throw_error(400, 'No such user')
 
-        ok = data['password'] == decrypt(user['password'])
+
+        try:
+            ok = data['password'] == decrypt(user['password'])
+        except KeyError:
+            return throw_error(400, 'Password is null')
 
         if ok is True:
             session['user_id'] = user['id']
