@@ -9,17 +9,30 @@
   line-height: 48px;
   z-index: 1; }
   .navbar ul {
-    padding: 0; }
+    padding: 0;
+    position: relative; }
   .navbar ul, .navbar li {
     list-style: none;
     display: inline-block;
     margin-left: 12px;
-    margin-right: 12px; }
+    margin-right: 12px;
+    position: relative;
+    height: 100%;
+    top: 0;
+    display: flex; }
   .navbar .btn {
     text-decoration: none;
     font-size: 100%;
     display: inline-block;
-    color: white; }
+    color: white;
+    position: relative;
+    height: 100%; }
+    .navbar .btn object {
+      position: relative;
+      display: inline;
+      width: 48px;
+      height: 48px;
+      z-index: -1; }
 
 .navbar-blue {
   background-color: #3498db;

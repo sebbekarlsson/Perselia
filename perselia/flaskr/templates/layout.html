@@ -1,3 +1,4 @@
+{% from "__svg.html" import render_svg %}
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -11,6 +12,7 @@
         {% include 'components.html' %}
         <nav class='navbar navbar-blue'>
             <ul class='left'>
+                <li><a class='btn navmenubtn' href='#' onclick='return toggle_sidenav();'>{{ render_svg('menu.svg', 'white') }}</a></li>
                 <li><a class='btn' href='/'>Perselia</a></li>
             </ul>
             <ul class='right'>
@@ -22,6 +24,7 @@
     </body>
     <footer>
         <script type='text/javascript' src='{{ url_for('static', filename='js/sidenav.js') }}'></script>
+        <script type='text/javascript' src='{{ url_for('static', filename='js/svg_color.js') }}'></script>
         {% block footer %}{% endblock %}
     </footer>
 </html>

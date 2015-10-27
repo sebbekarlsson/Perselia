@@ -18,6 +18,7 @@ $side_nav_width: 25%;
 
   ul{
     padding:0;
+    position:relative;
   }
 
   ul, li{
@@ -25,6 +26,10 @@ $side_nav_width: 25%;
     display:inline-block;
     margin-left:12px;
     margin-right:12px;
+    position:relative;
+    height:100%;
+    top:0;
+    display:flex;
   }
 
   .btn{
@@ -32,6 +37,16 @@ $side_nav_width: 25%;
     font-size:100%;
     display:inline-block;
     color:white;
+    position: relative;
+    height:100%;
+
+    object{
+      position: relative;
+      display:inline;
+      width:48px;
+      height:48px;
+      z-index: -1;
+    }
   }
 }
 
