@@ -51,7 +51,6 @@ def _register():
                 ),
                 headers=JSON_HEADERS
             )
-        print('asp = ' + r.text)
         _r = json.loads(r.text)
         if _r['errors'] is None:
             return redirect('/panel')

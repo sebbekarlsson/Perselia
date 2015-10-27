@@ -11,12 +11,10 @@ class Users(object):
     def register(self, data, token):
         ids = []
 
-        try:
-            users = data['users']
-        except KeyError:
-            return throw_error(404, 'Invalid data')
+        if 'users' not in data:
+            return throw_error(422, 'JSON missing users array')
 
-        for user in users:
+        for user in data['users']:
 
             existing_user = sess.query(User).filter(User.email==user['email']).first()
             if existing_user is not None:
@@ -33,7 +31,7 @@ class Users(object):
                     token=token
                 )
             except KeyError:
-                return throw_error(404, 'Invalid data')
+                return throw_error(422, 'Invalid data')
 
             # Validating the password, is it equal to the confirmation password?
             if u.password != encrypt(user['password_confirm']):
@@ -42,16 +40,17 @@ class Users(object):
             # Validating each field of the user
             for attr, value in u.__dict__.items():
                 if value is '' or value is ' ' or value is None:
-                    return throw_error(202, 'Value of {attribute} is empty.'.format(attribute=attr))
+                    return throw_error(422, 'Value of {attribute} is empty.'.format(attribute=attr))
 
+            # Validating the avatar_url, trying to download the file
             try:
                 try:
                     dir = 'flaskr/static/upload/image/avatar/{filename}.jpg'.format(filename=generate_name())
                     download_file(u.avatar_url, dir)
                 except ValueError:
-                    return throw_error(404, 'avatar_url is invalid')
+                    return throw_error(422, 'avatar_url is invalid')
             except FileNotFoundError:
-                return throw_error(404, 'Could not find directory where avatar should be saved:\n{dir}'.format(dir=dir))
+                return throw_error(500, 'Could not find directory where avatar should be saved:\n{dir}'.format(dir=dir))
 
             # adding user to database
             sess.add(u)
@@ -65,17 +64,16 @@ class Users(object):
             # collecting the id of the user
             ids.append(u.id)
 
-            try:
+            # Adding custom_fields if there are any
+            if 'custom_fields' in user:
                 for field in user['custom_fields']:
-                    customfield = CustomField(\
-                        key=field['key'],\
+                    customfield = CustomField(
+                        key=field['key'],
                         value=field['value'], user_id=u.id\
-                        )
+                    )
                     sess.add(customfield)
-            except KeyError:
-                pass
 
-
+            # Finally, we are saving the user
             sess.commit()
 
         return {'status' : 201, 'ids' : ids, "errors" : None}
@@ -125,7 +123,6 @@ class Users(object):
 
     ''' api/users.get (FETCH USER BY EMAIL) '''
     def get(self, data, token):
-
         if data is None:
             return throw_error(400, 'Data is null')
 
@@ -160,18 +157,31 @@ class Users(object):
 
     ''' api/users.login (LOGINS USER) '''
     def login(self, data, token):
+        user_data = self.get(data, token)
+        if 'users' in user_data:
+            users = user_data['users']
+            if len(users) > 0:
+                user = users[0]
+            else:
+                return throw_error(404, 'No matching users found')
+        else:
+            return throw_error(404, 'No matching users found')
 
-        try:
-            user = self.get(data, token)['users'][0]
-        except KeyError:
-            return throw_error(400, 'No such user')
+        # Making sure we recieve a valid password
+        if 'password' in data:
+            request_pass = data['password']
+        else:
+            throw_error(422, 'No password provided')
 
+        if 'password' in user:
+            real_pass = decrypt(user['password'])
+        else:
+            throw_error(500, 'Could not find a password for this user')
 
-        try:
-            ok = data['password'] == decrypt(user['password'])
-        except KeyError:
-            return throw_error(400, 'Password is null')
+        # Validation for the password
+        ok = (request_pass == real_pass)
 
+        # We are signing in the user if the validation of the password is valid
         if ok is True:
             session['user_id'] = user['id']
             return {'status' : 200, "errors" : None}
