@@ -1,8 +1,14 @@
-from flask import Blueprint, render_template, abort, request, Response, session, url_for
+from flask import Blueprint, render_template, abort, request, Response, session, url_for, redirect
 from jinja2 import TemplateNotFound
 
 from flask.ext.wtf import Form
 from wtforms import BooleanField, TextField, PasswordField, validators
+
+import requests
+
+import json
+
+from api.functions import JSON_HEADERS
 
 
 register = Blueprint('register', __name__, template_folder='templates')
@@ -20,10 +26,37 @@ class RegisterForm(Form):
 
 @register.route('/register', methods=['GET', 'POST'])
 def _register():
+
+    error = None
     form = RegisterForm(request.form, csrf_enabled=False)
 
     if form.validate_on_submit():
-        return render_template('sorry.html')
+        r = requests.post(
+                request.url_root.rstrip('/') + '/api/users.register',
+                data=json.dumps
+                (
+                    {   
+                        'users':[
+                            {
+                                'firstname': form.firstname.data,
+                                'lastname': form.lastname.data,
+                                'email': form.email.data,
+                                'avatar_url': form.avatar_url.data,
+                                'password': form.password.data,
+                                'password_confirm': form.password_confirm.data,
+                                'master': 1
+                            }
+                        ]
+                    }
+                ),
+                headers=JSON_HEADERS
+            )
+        print('asp = ' + r.text)
+        _r = json.loads(r.text)
+        if _r['errors'] is None:
+            return redirect('/panel')
+        else:
+            error = _r['errors']
         
 
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, error=error)

@@ -4,7 +4,7 @@
 
 {% block head %}
     {{ super() }}
-    <script type='text/javascript' src='{{ url_for('static', filename='js/register-form.js') }}'></script>
+    <!--<script type='text/javascript' src='{{ url_for('static', filename='js/register-form.js') }}'></script>-->
 {% endblock %}
 
 {% block body %}
@@ -38,7 +38,13 @@
                                 {{ render_field(form.password_confirm) }}
                             </li>
                             <li>
-                                <p id='statusmessage'></p>
+                                <p id='statusmessage'>
+                                    {% if error is not none %}
+                                        {% for err in error %}
+                                            {{ err }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </p>
                             </li>
                         </ul>
                         <nav class='options'>

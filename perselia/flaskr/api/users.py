@@ -10,21 +10,30 @@ class Users(object):
     ''' api/users.register (REGISTERS USERS) '''
     def register(self, data, token):
         ids = []
-        for user in data['users']:
+
+        try:
+            users = data['users']
+        except KeyError:
+            return throw_error(404, 'Invalid data')
+
+        for user in users:
 
             existing_user = sess.query(User).filter(User.email==user['email']).first()
             if existing_user is not None:
                 return throw_error(202, 'User already exists')
 
-            u = User(\
-                firstname=user['firstname'],\
-                lastname=user['lastname'],\
-                email=user['email'],\
-                avatar_url=user['avatar_url'],\
-                password=encrypt(user['password']),\
-                master=user['master'],\
-                token=token
-            )
+            try:
+                u = User(\
+                    firstname=user['firstname'],\
+                    lastname=user['lastname'],\
+                    email=user['email'],\
+                    avatar_url=user['avatar_url'],\
+                    password=encrypt(user['password']),\
+                    master=user['master'],\
+                    token=token
+                )
+            except KeyError:
+                return throw_error(404, 'Invalid data')
 
             # Validating the password, is it equal to the confirmation password?
             if u.password != encrypt(user['password_confirm']):
@@ -35,8 +44,14 @@ class Users(object):
                 if value is '' or value is ' ' or value is None:
                     return throw_error(202, 'Value of {attribute} is empty.'.format(attribute=attr))
 
-
-            download_file(u.avatar_url, '/static/upload/image/avatar/{filename}.jpg'.format(filename=generate_name()))
+            try:
+                try:
+                    dir = 'flaskr/static/upload/image/avatar/{filename}.jpg'.format(filename=generate_name())
+                    download_file(u.avatar_url, dir)
+                except ValueError:
+                    return throw_error(404, 'avatar_url is invalid')
+            except FileNotFoundError:
+                return throw_error(404, 'Could not find directory where avatar should be saved:\n{dir}'.format(dir=dir))
 
             # adding user to database
             sess.add(u)
@@ -50,13 +65,18 @@ class Users(object):
             # collecting the id of the user
             ids.append(u.id)
 
-            for field in user['custom_fields']:
-                customfield = CustomField(\
-                    key=field['key'],\
-                    value=field['value'], user_id=u.id\
-                    )
-                sess.add(customfield)
-                sess.commit()
+            try:
+                for field in user['custom_fields']:
+                    customfield = CustomField(\
+                        key=field['key'],\
+                        value=field['value'], user_id=u.id\
+                        )
+                    sess.add(customfield)
+            except KeyError:
+                pass
+
+
+            sess.commit()
 
         return {'status' : 201, 'ids' : ids, "errors" : None}
 

@@ -49,6 +49,6 @@ def download_file(url, path):
     response = urlopen(url)
     content = response.read()
 
-    with open('perselia/flaskr' + path, 'wb+') as f:
+    with open(path, 'wb+') as f:
         f.write(content)
         f.close()
