@@ -37,6 +37,8 @@ def _login():
             )
         _r = json.loads(r.text)
         if _r['errors'] is None:
+            session['user_id'] = _r['user_id']
+            
             return redirect('/panel')
         else:
             error = _r['errors']

@@ -184,7 +184,7 @@ class Users(object):
         # We are signing in the user if the validation of the password is valid
         if ok is True:
             session['user_id'] = user['id']
-            return {'status' : 200, "errors" : None}
+            return {'status': 200, 'user_id': session['user_id'] ,"errors": None}
         else:
             try:
                 del session['user_id']

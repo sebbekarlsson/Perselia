@@ -16,8 +16,13 @@
                 <li><a class='btn' href='/'>Perselia</a></li>
             </ul>
             <ul class='right'>
-                <li><a class='btn' href='/login'>Login</a></li>
-                <li><a class='btn' href='/register'>Register</a></li>
+                {% if 'user_id' in session %}
+                    <li><a class='btn' href='/panel'>Panel</a></li>
+                    <li><a class='btn' href='/logout'>Logout</a></li>
+                {% else %}
+                    <li><a class='btn' href='/login'>Login</a></li>
+                    <li><a class='btn' href='/register'>Register</a></li>
+                {% endif %}
             </ul>
         </nav>
         {% block body %}{% endblock %}

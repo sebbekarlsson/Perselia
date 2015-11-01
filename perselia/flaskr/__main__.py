@@ -25,6 +25,14 @@ app.register_blueprint(register)
 from views.login import login
 app.register_blueprint(login)
 
+''' logout blueprint '''
+from views.logout import logout
+app.register_blueprint(logout)
+
+''' panel blueprint '''
+from views.panel import panel
+app.register_blueprint(panel)
+
 
 if __name__ == "__main__":
     initialize_database()
