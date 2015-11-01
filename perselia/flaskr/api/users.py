@@ -66,11 +66,17 @@ class Users(object):
 
             # Adding custom_fields if there are any
             if 'custom_fields' in user:
+                print(user['custom_fields'])
                 for field in user['custom_fields']:
-                    customfield = CustomField(
-                        key=field['key'],
-                        value=field['value'], user_id=u.id\
-                    )
+
+                    try:
+                        customfield = CustomField(
+                            key=field['key'],
+                            value=field['value'], user_id=u.id\
+                        )
+                    except (TypeError, KeyError):
+                        return throw_error(422, 'custom_fields is malformed')
+
                     sess.add(customfield)
 
             # Finally, we are saving the user

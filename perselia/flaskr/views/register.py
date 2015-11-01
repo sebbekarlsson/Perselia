@@ -69,7 +69,7 @@ def _register():
             session['user_id'] = _r['user_id']
             
             return redirect('/panel')
-            
+
         else:
             error = _r['errors']
         
