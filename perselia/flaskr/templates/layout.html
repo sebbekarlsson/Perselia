@@ -12,7 +12,9 @@
         {% include 'components.html' %}
         <nav class='navbar navbar-blue'>
             <ul class='left'>
-                <li><a class='btn navmenubtn' href='#' onclick='return toggle_sidenav();'>{{ render_svg('menu.svg', 'white') }}</a></li>
+                {% if 'user_id' in session %}
+                    <li><a class='btn navmenubtn' href='#' onclick='return toggle_sidenav();'>{{ render_svg('menu.svg', 'white') }}</a></li>
+                {% endif %}
                 <li><a class='btn' href='/'>Perselia</a></li>
             </ul>
             <ul class='right'>

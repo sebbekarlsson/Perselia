@@ -45,7 +45,7 @@ class Users(object):
             # Validating the avatar_url, trying to download the file
             try:
                 try:
-                    dir = 'flaskr/static/upload/image/avatar/{filename}.jpg'.format(filename=generate_name())
+                    dir = 'perselia/flaskr/static/upload/image/avatar/{filename}.jpg'.format(filename=generate_name())
                     download_file(u.avatar_url, dir)
                 except ValueError:
                     return throw_error(422, 'avatar_url is invalid')

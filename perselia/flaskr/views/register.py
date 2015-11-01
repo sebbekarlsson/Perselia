@@ -53,7 +53,23 @@ def _register():
             )
         _r = json.loads(r.text)
         if _r['errors'] is None:
+            r = requests.post(
+                request.url_root.rstrip('/') + '/api/users.login',
+                data=json.dumps
+                (
+                    {
+                        'email': form.email.data,
+                        'password': form.password.data
+                    }
+                ),
+                headers=JSON_HEADERS
+            )
+        _r = json.loads(r.text)
+        if _r['errors'] is None:
+            session['user_id'] = _r['user_id']
+            
             return redirect('/panel')
+            
         else:
             error = _r['errors']
         
