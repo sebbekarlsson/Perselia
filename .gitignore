@@ -1,4 +1,4 @@
-avatar/
+avatar/.*
 *.sqlite
 *.sqlite-journal
 
