@@ -41,17 +41,7 @@ class Users(object):
             for attr, value in u.__dict__.items():
                 if value is '' or value is ' ' or value is None:
                     return throw_error(422, 'Value of {attribute} is empty.'.format(attribute=attr))
-
-            # Validating the avatar_url, trying to download the file
-            try:
-                try:
-                    dir = 'perselia/flaskr/static/upload/image/avatar/{filename}.jpg'.format(filename=generate_name())
-                    download_file(u.avatar_url, dir)
-                except ValueError:
-                    return throw_error(422, 'avatar_url is invalid')
-            except FileNotFoundError:
-                return throw_error(500, 'Could not find directory where avatar should be saved:\n{dir}'.format(dir=dir))
-
+            
             # adding user to database
             sess.add(u)
 
