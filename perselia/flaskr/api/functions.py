@@ -8,9 +8,11 @@ from flask import url_for
 
 JSON_HEADERS = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
+# Obviously, the encryption method will be changed in the final version
 def encrypt(string):
     return base64.b64encode(string.encode('ascii'))
 
+# Obviously, the encryption method will be changed in the final version
 def decrypt(string):
     return base64.b64decode(string).decode(encoding='UTF-8')
 
