@@ -1,4 +1,4 @@
-upload/*
+upload/image/avatar/*
 *.sqlite
 *.sqlite-journal
 
